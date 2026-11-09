@@ -65,7 +65,7 @@ export const Navbar = () => {
                           <Link
                             href="#"
                             className="flex-row items-center gap-2">
-                            Backlog
+                            Popular
                           </Link>
                         }
                       />
@@ -74,7 +74,7 @@ export const Navbar = () => {
                           <Link
                             href="#"
                             className="flex-row items-center gap-2">
-                            To Do
+                            Top Rating
                           </Link>
                         }
                       />
@@ -83,7 +83,16 @@ export const Navbar = () => {
                           <Link
                             href="#"
                             className="flex-row items-center gap-2">
-                            Done
+                            Mendatang
+                          </Link>
+                        }
+                      />
+                      <NavigationMenuLink
+                        render={
+                          <Link
+                            href="#"
+                            className="flex-row items-center gap-2">
+                            Sedang Tayang
                           </Link>
                         }
                       />
@@ -105,7 +114,7 @@ export const Navbar = () => {
                           <Link
                             href="#"
                             className="flex-row items-center gap-2">
-                            Backlog
+                            Popular
                           </Link>
                         }
                       />
@@ -114,7 +123,7 @@ export const Navbar = () => {
                           <Link
                             href="#"
                             className="flex-row items-center gap-2">
-                            To Do
+                            Top Rating
                           </Link>
                         }
                       />
@@ -123,7 +132,16 @@ export const Navbar = () => {
                           <Link
                             href="#"
                             className="flex-row items-center gap-2">
-                            Done
+                            Mendatang
+                          </Link>
+                        }
+                      />
+                      <NavigationMenuLink
+                        render={
+                          <Link
+                            href="#"
+                            className="flex-row items-center gap-2">
+                            Sedang Tayang
                           </Link>
                         }
                       />
@@ -134,38 +152,6 @@ export const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        {/* <NavigationMenu>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>With Icon</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[200px]">
-                <li>
-                  <NavigationMenuLink
-                    render={
-                      <Link href="#" className="flex-row items-center gap-2">
-                        Backlog
-                      </Link>
-                    }
-                  />
-                  <NavigationMenuLink
-                    render={
-                      <Link href="#" className="flex-row items-center gap-2">
-                        To Do
-                      </Link>
-                    }
-                  />
-                  <NavigationMenuLink
-                    render={
-                      <Link href="#" className="flex-row items-center gap-2">
-                        Done
-                      </Link>
-                    }
-                  />
-                </li>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenu> */}
       </div>
       <div className="flex justify-center items-center">
         <Input placeholder="search" />
