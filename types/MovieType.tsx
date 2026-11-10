@@ -11,6 +11,16 @@ export interface Movie {
   original_title: string;
 }
 
+export interface genre {
+  id: number;
+  name: string;
+}
+
+export interface production_countries {
+  iso_3166_1: string;
+  name: string;
+}
+
 export interface MovieDetail {
   id: number;
   title: string;
@@ -21,6 +31,8 @@ export interface MovieDetail {
   vote_average: number;
   vote_count: number;
   genre_ids: number[];
+  production_countries: production_countries[];
+  genres: genre[];
   original_title: string;
 }
 

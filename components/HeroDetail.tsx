@@ -6,17 +6,21 @@ import { Star } from "lucide-react";
 import { useGetMovieDetail } from "@/service/useGetMovieDetail";
 import Link from "next/link";
 import { useGetVideosMovie } from "@/service/useGetVideosMovie";
-import { MovieVideo } from "@/types/MovieType";
+import { MovieDetail, MovieVideo } from "@/types/MovieType";
 import { TrailerButton } from "./DialogTailer";
 
-export const HeroDetail = ({ id }: { id: number }) => {
-  const { data: movie, isPending } = useGetMovieDetail(id);
-
+export const HeroDetail = ({
+  id,
+  movie,
+}: {
+  id: number;
+  movie: MovieDetail;
+}) => {
   const { data: videos, isPending: loadingVideos } = useGetVideosMovie(id);
 
   // console.log(data);
 
-  if (isPending && loadingVideos) return <p>Loading...</p>;
+  if (loadingVideos) return <p>Loading...</p>;
 
   const trailer =
     videos?.results?.find(
@@ -34,8 +38,8 @@ export const HeroDetail = ({ id }: { id: number }) => {
     <>
       <div className="relative h-[60vh] w-full mt-7 md:h-[90vh]">
         <Image
-          src={getBackdropUrl(movie.backdrop_path)}
-          alt={movie.title}
+          src={getBackdropUrl(movie?.backdrop_path ?? "")}
+          alt={movie?.title}
           fill
           sizes="100vw"
           className="object-cover"
@@ -49,20 +53,20 @@ export const HeroDetail = ({ id }: { id: number }) => {
 
         <div className="absolute bottom-12 left-0 w-full px-4 md:px-12">
           <div className="max-w-xl space-y-3">
-            <h2 className="text-3xl font-bold md:text-5xl">{movie.title}</h2>
+            <h2 className="text-3xl font-bold md:text-5xl">{movie?.title}</h2>
 
             <div className="flex items-center gap-3 text-sm">
               <span className="flex items-center gap-1 font-semibold">
                 <Star className="size-4 fill-yellow-400 text-yellow-400" />
-                {movie.vote_average.toFixed(1)}
+                {movie?.vote_average.toFixed(1)}
               </span>
               <span className="text-muted-foreground">
-                {formatDate(movie.release_date)}
+                {formatDate(movie?.release_date)}
               </span>
             </div>
 
             <p className="line-clamp-3 text-sm text-muted-foreground md:text-base">
-              {movie.overview}
+              {movie?.overview}
             </p>
 
             <TrailerButton trailer={trailer} />
