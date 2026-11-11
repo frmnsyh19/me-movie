@@ -42,7 +42,21 @@ export const formatDate = (date?: string | null, locale = "en-US") => {
   });
 };
 
+export const formatCurrency = (value?: number | null) => {
+  if (!value) return "-"; // budget 0 atau kosong = data tidak tersedia
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0, // tanpa desimal
+  }).format(value);
+};
+
 export const getBackdropUrl = (
+  path: string | null,
+  size: "w780" | "w1280" | "original" = "w1280",
+) => (path ? `${IMAGE_BASE}/${size}${path}` : "/no-backdrop.png");
+
+export const getCastUrlImage = (
   path: string | null,
   size: "w780" | "w1280" | "original" = "w1280",
 ) => (path ? `${IMAGE_BASE}/${size}${path}` : "/no-backdrop.png");

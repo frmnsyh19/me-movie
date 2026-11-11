@@ -25,6 +25,7 @@ export interface MovieDetail {
   id: number;
   title: string;
   overview: string;
+  budget: number;
   poster_path: string | null;
   backdrop_path: string | null;
   release_date: string;
@@ -56,4 +57,33 @@ export interface MovieResponse {
   results: Movie[];
   total_pages: number;
   total_results: number;
+}
+
+export interface Person {
+  adult: boolean;
+  gender: number; // 0 = tidak diketahui, 1 = perempuan, 2 = laki-laki, 3 = non-biner
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string | null;
+  credit_id: string;
+}
+
+export interface CastMember extends Person {
+  cast_id: number;
+  character: string; // nama peran yang dimainkan
+  order: number; // urutan kepentingan, 0 = pemeran utama
+}
+
+export interface CrewMember extends Person {
+  department: string; // "Directing", "Writing", "Production", dll.
+  job: string; // "Director", "Screenplay", "Producer", dll.
+}
+
+export interface Credits {
+  id: number;
+  cast: CastMember[];
+  crew: CrewMember[];
 }

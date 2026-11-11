@@ -1,5 +1,5 @@
 import { tmdbservice } from "@/lib/tmdbservice";
-import { MovieResponse, MovieVideoResponse } from "@/types/MovieType";
+import { Credits, MovieResponse, MovieVideoResponse } from "@/types/MovieType";
 
 export async function getPopularMovies() {
   return tmdbservice<MovieResponse>("/movie/popular?language=en-US&page=1");
@@ -19,4 +19,12 @@ export async function getTrandingMovies() {
 
 export async function getMovieTrailerVidio(id: number) {
   return tmdbservice<MovieVideoResponse>(`/movie/${id}/videos?language=en-US`);
+}
+
+export async function getMovieCredits(id: number) {
+  return tmdbservice<Credits>(`/movie/${id}/credits`);
+}
+
+export async function getMovieSmiliar(id: number) {
+  return tmdbservice<MovieResponse>(`/movie/${id}/similar`);
 }
