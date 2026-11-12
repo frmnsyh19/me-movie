@@ -16,7 +16,7 @@ import { getPosterUrl } from "@/lib/tmdbservice";
 
 export const PopularMovies = ({ movies }: { movies: Movie[] }) => {
   return (
-    <section className="w-full">
+    <section className="w-full p-3 bg-card">
       <h2 className="mb-4 text-2xl font-semibold">Film Populer</h2>
 
       <Carousel

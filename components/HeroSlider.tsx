@@ -93,7 +93,7 @@ export const HeroSlider = () => {
   // return <></>;
 
   return (
-    <section className="relative w-full lg:mt-3">
+    <section className="relative w-full">
       <Carousel
         setApi={setApi}
         opts={{ loop: true }}
