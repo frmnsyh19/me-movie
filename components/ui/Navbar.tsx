@@ -150,7 +150,7 @@ export const Navbar = () => {
         <div className="flex items-center gap-6">
           <Link
             href="/"
-            className="text-2xl font-extrabold tracking-tight text-purple-500 md:text-3xl">
+            className="text-2xl font-extrabold tracking-tight text-pink-600 md:text-3xl">
             LayarMovie
           </Link>
 

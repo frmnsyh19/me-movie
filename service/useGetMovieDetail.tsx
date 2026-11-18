@@ -1,11 +1,11 @@
 import { MovieVideoResponse } from "@/types/MovieType";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetMovieDetail = (id?: number | string) => {
+export const useGetMovieDetail = (id?: number | string, kategori?: string) => {
   return useQuery({
-    queryKey: ["GetMovieDetail", id],
+    queryKey: ["GetMovieDetail", id, kategori],
     queryFn: async () => {
-      const res = await fetch(`/api/movie/${id}`);
+      const res = await fetch(`/api/detail/${kategori}/${id}`);
 
       if (!res.ok) {
         throw new Error("Gagal ambil detail film");

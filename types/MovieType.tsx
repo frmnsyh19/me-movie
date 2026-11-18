@@ -2,9 +2,11 @@ export interface Movie {
   id: number;
   title: string;
   overview: string;
+  name: string;
   poster_path: string | null;
   backdrop_path: string | null;
   release_date: string;
+  first_air_date: string;
   vote_average: number;
   vote_count: number;
   genre_ids: number[];
@@ -23,6 +25,7 @@ export interface production_countries {
 
 export interface MovieDetail {
   id: number;
+  name: string;
   title: string;
   overview: string;
   budget: number;
@@ -31,6 +34,9 @@ export interface MovieDetail {
   release_date: string;
   vote_average: number;
   vote_count: number;
+  number_of_episodes: number;
+  number_of_seasons: number;
+  first_air_date: string;
   genre_ids: number[];
   production_countries: production_countries[];
   genres: genre[];

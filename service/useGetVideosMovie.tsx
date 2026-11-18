@@ -1,20 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
-export const useGetVideosMovie = (id: number) => {
+export const useGetVideosMovie = (id: number, kategori: string) => {
   return useQuery({
-    queryKey: ["GetVideos", id],
+    queryKey: ["GetTrailer", id, kategori],
     queryFn: async () => {
-      const res = await fetch(`/api/movie/${id}/videos`);
-
-      if (!res.ok) {
-        throw new Error("OMG Something Went When Wrong");
-      }
-
-      const data = await res.json();
-
-      return data.data;
+      const res = await fetch(`/api/detail/${kategori}/${id}/videos`);
+      if (!res.ok) throw new Error("Gagal ambil trailer");
+      const json = await res.json();
+      return json.data; // objek trailer atau null
     },
-    enabled: !!id, // jangan fetch kalau id belum ada
+    enabled: !!id && !!kategori,
   });
 };

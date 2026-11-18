@@ -3,14 +3,14 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ id: string }> },
+  { params }: { params: Promise<{ id: string; kategori: string }> },
 ) {
   try {
-    const { id } = await params;
+    const { id, kategori } = await params;
 
     const movieId = Number(id);
 
-    const data = await getMovieSmiliar(movieId);
+    const data = await getMovieSmiliar(movieId, kategori);
 
     return NextResponse.json(
       {
@@ -25,14 +25,14 @@ export async function GET(
   } catch (error) {
     console.log(error);
 
-    return NextResponse.json(
-      {
-        status: 500,
-        message: "error cek routenya",
-      },
-      {
-        status: 500,
-      },
-    );
+    // return NextResponse.json(
+    //   {
+    //     status: 500,
+    //     message: "error cek routenya",
+    //   },
+    //   {
+    //     status: 500,
+    //   },
+    // );
   }
 }

@@ -4,8 +4,14 @@ import { Movie, MovieResponse } from "@/types/MovieType";
 import React from "react";
 import Link from "next/link";
 
-export const SimilarMovie = ({ id }: { id: number }) => {
-  const { data: similar, isPending } = useGetSimiliarMovie(id);
+export const SimilarMovie = ({
+  id,
+  kategori,
+}: {
+  id: number;
+  kategori: string;
+}) => {
+  const { data: similar, isPending } = useGetSimiliarMovie(id, kategori);
 
   if (isPending) {
     return <></>;
@@ -31,16 +37,16 @@ export const SimilarMovie = ({ id }: { id: number }) => {
                   <img
                     src={getPosterUrl(item.poster_path)}
                     className="h-full w-full object-cover"
-                    alt={item.title}
+                    alt={item.title ?? item.name}
                   />
                 </div>
 
                 <div className="flex min-w-0 flex-col gap-0.5 md:gap-1">
                   <span className="line-clamp-2 text-xs font-medium leading-tight md:text-base">
-                    {item.title}
+                    {item.title ?? item.name}
                   </span>
                   <span className="text-[10px] text-muted-foreground md:text-sm">
-                    {formatDate(item.release_date)}
+                    {formatDate(item.release_date ?? item.first_air_date)}
                   </span>
                 </div>
               </Link>

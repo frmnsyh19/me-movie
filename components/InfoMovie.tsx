@@ -24,11 +24,13 @@ export const InfoMovie = ({
   id,
   crew,
   cast,
+  kategori,
 }: {
   id: number;
   movie: MovieDetail;
   crew: CrewMember;
   cast: CastMember[];
+  kategori: string;
 }) => {
   return (
     <div className="w-full flex flex-col lg:flex-row gap-3 justify-center items-center p-1 lg:p-6">
@@ -37,7 +39,10 @@ export const InfoMovie = ({
         <div className="flex flex-col w-full gap-2 p-4 bg-card">
           {/* title movie */}
           <p className="text-2xl font-bold">
-            {movie.title} ({movie.release_date?.slice(0, 4)})
+            {movie.title ?? movie.name} (
+            {movie.release_date?.slice(0, 4) ??
+              movie.first_air_date?.slice(0, 4)}
+            )
           </p>
           {/* section genre & informasi negara */}
           <div className="flex w-full flex-wrap flex-row gap-2">
@@ -95,7 +100,17 @@ export const InfoMovie = ({
             {/* cerita film */}
             <span className="">{movie.overview}</span>
             <div className="w-full flex flex-col mt-2">
-              <span className="">Budget : {formatCurrency(movie.budget)}</span>
+              {kategori === "movie" ? (
+                <span>Budget : {formatCurrency(movie.budget)}</span>
+              ) : (
+                <span>
+                  New :{" "}
+                  <span className="text-pink-600">
+                    Season {movie.number_of_seasons} Episode{" "}
+                    {movie.number_of_episodes}
+                  </span>
+                </span>
+              )}
               <span className="">
                 Director : <span className="text-pink-600">{crew?.name}</span>
               </span>
@@ -109,7 +124,7 @@ export const InfoMovie = ({
               </span>
               <span className="">Votes : {movie.vote_average}</span>
               <span className="">
-                Release : {formatDate(movie.release_date)}
+                Release : {formatDate(movie.first_air_date)}
               </span>
               <div className="w-20 h-24 mt-2">
                 <img
@@ -122,7 +137,7 @@ export const InfoMovie = ({
           </div>
         </div>
       </div>
-      <SimilarMovie id={id} />
+      <SimilarMovie id={id} kategori={kategori} />
     </div>
   );
 };

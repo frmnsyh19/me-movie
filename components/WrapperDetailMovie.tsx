@@ -10,20 +10,28 @@ import { InfoMovie } from "./InfoMovie";
 import { useGetMovieCredits } from "@/service/useGetMovieCredits";
 import { useGetSimiliarMovie } from "@/service/useGetSimiliarMovie";
 
-export const WrapperDetailMovie = ({ id }: { id: number }) => {
+export const WrapperDetailMovie = ({
+  id,
+  kategori,
+}: {
+  id: number;
+  kategori: string;
+}) => {
   // const tailer = videos?.results?.find((item: MovieVideo) => (
   //  item.site === "Youtube" && item.type === "Tailer" && item.official
   // )) ?? null;
 
-  const { data: movie, isPending } = useGetMovieDetail(id);
+  const { data: movie, isPending, isError } = useGetMovieDetail(id, kategori);
 
   // console.log(trailer, "tailer");
 
-  const { data: credits, isPending: creditsLoading } = useGetMovieCredits(id);
+  const { data: credits, isPending: creditsLoading } = useGetMovieCredits(
+    id,
+    kategori,
+  );
 
-  const { data: similiar } = useGetSimiliarMovie(id);
-
-  if (isPending && creditsLoading) return <p>Loading....</p>;
+  if (isPending || creditsLoading) return <p>Loading....</p>;
+  if (isError || !movie) return <p>Data tidak ditemukan.</p>;
 
   console.log(credits, "movie");
 
@@ -44,8 +52,14 @@ export const WrapperDetailMovie = ({ id }: { id: number }) => {
   return (
     <div className="w-full flex flex-col gap-2">
       <Navbar />
-      <HeroDetail id={id} movie={movie} />
-      <InfoMovie movie={movie} crew={sutradara} id={id} cast={topCast} />
+      <HeroDetail id={id} movie={movie} kategori={kategori} />
+      <InfoMovie
+        movie={movie}
+        crew={sutradara}
+        id={id}
+        cast={topCast}
+        kategori={kategori}
+      />
     </div>
   );
 };

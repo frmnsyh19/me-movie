@@ -23,22 +23,24 @@ export async function getSeriesPopular(years = 3) {
   return tmdbservice<MovieResponse>(`/discover/tv?${params}`);
 }
 
-export async function getDetailMovie(id: number) {
-  return tmdbservice<MovieResponse>(`/movie/${id}`);
+export async function getDetailMovie(id: number, kategori: string) {
+  return tmdbservice<MovieResponse>(`/${kategori}/${id}`);
 }
 
 export async function getTrandingMovies() {
   return tmdbservice<MovieResponse>("/trending/movie/week?language=id-ID");
 }
 
-export async function getMovieTrailerVidio(id: number) {
-  return tmdbservice<MovieVideoResponse>(`/movie/${id}/videos?language=en-US`);
+export async function getMovieTrailerVidio(id: number, kategori: string) {
+  return tmdbservice<MovieVideoResponse>(
+    `/${kategori}/${id}/videos?language=en-US`,
+  );
 }
 
-export async function getMovieCredits(id: number) {
-  return tmdbservice<Credits>(`/movie/${id}/credits`);
+export async function getMovieCredits(id: number, kategori: string) {
+  return tmdbservice<Credits>(`/${kategori}/${id}/credits`);
 }
 
-export async function getMovieSmiliar(id: number) {
-  return tmdbservice<MovieResponse>(`/movie/${id}/similar`);
+export async function getMovieSmiliar(id: number, kategori: string) {
+  return tmdbservice<MovieResponse>(`/${kategori}/${id}/similar`);
 }

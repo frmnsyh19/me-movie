@@ -102,7 +102,7 @@ export const HeroSlider = () => {
         <CarouselContent className="ml-0">
           {heroMovies.map((movie, index) => (
             <CarouselItem key={movie.id} className="pl-0">
-              <div className="relative h-[60vh] w-full md:h-[90vh]">
+              <div className="relative h-[70vh] w-full md:h-[90vh]">
                 <Image
                   src={getBackdropUrl(movie.backdrop_path)}
                   alt={movie.title}

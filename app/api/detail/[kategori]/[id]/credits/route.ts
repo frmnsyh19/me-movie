@@ -1,22 +1,22 @@
-import { getMovieTrailerVidio } from "@/service/tmdbmovieservice";
+import { getMovieCredits } from "@/service/tmdbmovieservice";
 import { NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> },
+  request: Request,
+  { params }: { params: Promise<{ id: string; kategori: string }> },
 ) {
   try {
-    const { id } = await params;
+    const { id, kategori } = await params;
 
     const movieId = Number(id);
 
-    const data = await getMovieTrailerVidio(movieId);
+    const data = await getMovieCredits(movieId, kategori);
 
     return NextResponse.json(
       {
         status: 200,
-        data: data,
-        message: "OMG",
+        data,
+        message: "oke bgt",
       },
       {
         status: 200,

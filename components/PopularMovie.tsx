@@ -15,6 +15,8 @@ import { Movie } from "@/types/MovieType";
 import { getPosterUrl } from "@/lib/tmdbservice";
 
 export const PopularMovies = ({ movies }: { movies: Movie[] }) => {
+  const kategori = "movie";
+
   return (
     <section className="w-full p-3 bg-card">
       <h2 className="mb-4 text-2xl font-semibold">Film Populer</h2>
@@ -27,7 +29,9 @@ export const PopularMovies = ({ movies }: { movies: Movie[] }) => {
             <CarouselItem
               key={movie.id}
               className="basis-1/2 pl-3 sm:basis-1/3 md:basis-1/4 lg:basis-1/6">
-              <Link href={`/movie/${movie.id}`} className="group block">
+              <Link
+                href={`/detail/${kategori}/${movie.id}`}
+                className="group block">
                 <div className="relative aspect-[2/3] overflow-hidden rounded-lg bg-muted">
                   <Image
                     src={

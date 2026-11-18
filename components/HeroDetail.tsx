@@ -12,15 +12,20 @@ import { TrailerButton } from "./DialogTailer";
 export const HeroDetail = ({
   id,
   movie,
+  kategori,
 }: {
   id: number;
   movie: MovieDetail;
+  kategori: string;
 }) => {
-  const { data: videos, isPending: loadingVideos } = useGetVideosMovie(id);
+  const { data: videos, isPending: loadingVideos } = useGetVideosMovie(
+    id,
+    kategori,
+  );
 
   // console.log(data);
 
-  if (loadingVideos) return <p>Loading...</p>;
+  // if (loadingVideos) return <p>Loading...</p>;
 
   const trailer =
     videos?.results?.find(
@@ -36,7 +41,7 @@ export const HeroDetail = ({
 
   return (
     <>
-      <div className="relative h-[60vh] w-full mt-7 md:h-[90vh]">
+      <div className="relative h-[80vh] w-full md:h-[95vh]">
         <Image
           src={getBackdropUrl(movie?.backdrop_path ?? "")}
           alt={movie?.title}
