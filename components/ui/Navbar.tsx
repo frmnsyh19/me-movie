@@ -29,21 +29,21 @@ type MenuGroup = { label: string; items: MenuItem[] };
 // TODO: ganti href "#" dengan route kamu yang sebenarnya
 const menus: MenuGroup[] = [
   {
-    label: "Film",
+    label: "movie",
     items: [
-      { label: "Popular", href: "#" },
-      { label: "Top Rating", href: "#" },
-      { label: "Mendatang", href: "#" },
-      { label: "Sedang Tayang", href: "#" },
+      { label: "Popular", href: "popular" },
+      { label: "Top Rating", href: "top_rated" },
+      { label: "Mendatang", href: "upcoming" },
+      { label: "Sedang Tayang", href: "now_playing" },
     ],
   },
   {
-    label: "Series",
+    label: "tv",
     items: [
-      { label: "Popular", href: "#" },
-      { label: "Top Rating", href: "#" },
-      { label: "Mendatang", href: "#" },
-      { label: "Sedang Tayang", href: "#" },
+      { label: "Popular", href: "popular" },
+      { label: "Top Rating", href: "top_rated" },
+      { label: "Mendatang", href: "upcoming" },
+      { label: "Sedang Tayang", href: "now_playing" },
     ],
   },
 ];
@@ -140,10 +140,10 @@ export const Navbar = () => {
   return (
     <header
       className={cn(
-        "inset-x-0 top-0 z-50 w-full transition-colors duration-300",
+        "sticky inset-x-0 top-0 z-50 w-full transition-colors duration-300",
         scrolled
-          ? "fixed border-b border-white/10 bg-black/60 backdrop-blur-md"
-          : "absolute bg-gradient-to-b from-black/60 to-transparent",
+          ? "border-b border-white/10 bg-black/30 backdrop-blur-md" // saat di-scroll: transparan
+          : "bg-zinc-950", // saat diam di atas: solid
       )}>
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4">
         {/* kiri: logo + menu desktop */}
@@ -168,7 +168,7 @@ export const Navbar = () => {
                           <NavigationMenuLink
                             render={
                               <Link
-                                href={item.href}
+                                href={`/${menu.label}/${item.href}`}
                                 className="flex-row items-center gap-2">
                                 {item.label}
                               </Link>

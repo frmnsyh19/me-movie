@@ -44,3 +44,25 @@ export async function getMovieCredits(id: number, kategori: string) {
 export async function getMovieSmiliar(id: number, kategori: string) {
   return tmdbservice<MovieResponse>(`/${kategori}/${id}/similar`);
 }
+
+export async function getMovieTrandingAll(page: number) {
+  return tmdbservice<MovieResponse>(
+    `/trending/movie/week?language=en-US&page=${page}`,
+  );
+}
+
+export async function getPopularMovie(page: number, kategori: string) {
+  return tmdbservice<MovieResponse>(
+    `/${kategori}/popular?language=en-US&page=${page}`,
+  );
+}
+
+export async function getSearchMovie(
+  page: number,
+  kategori: string,
+  tipe: string,
+) {
+  return tmdbservice<MovieResponse>(
+    `/${kategori}/${tipe}?language=en-US&page=${page}`,
+  );
+}

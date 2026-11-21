@@ -18,14 +18,24 @@ export const WrapperHome = () => {
     return <></>;
   }
 
-  console.log(series, "seriesss");
+  console.log(movies, "seriesss");
+
+  // const popularMovie = movies?.filter((item) => {
+  //   return item.status === "Released";
+  // });
+
+  const today = new Date().toISOString().split("T")[0];
+
+  const popularMovie = (movies ?? []).filter(
+    (item: Movie) => item.release_date && item.release_date <= today,
+  );
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <Navbar />
       <HeroSlider />
       <div className="w-full p-1 flex flex-col gap-2 mt-2">
-        <PopularMovies movies={movies ?? []} />
+        <PopularMovies movies={popularMovie ?? []} />
         <Series series={series?.results ?? []} />
       </div>
     </div>
